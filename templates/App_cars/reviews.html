@@ -1,0 +1,275 @@
+{% extends 'base1.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+{% block meta %}
+
+{% endblock %}
+{% block main %}
+    <style>
+        .jumbotron {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static "img/banner-image-2-1920x300.jpg" %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 270px;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+            font-size: 45px;
+            padding: 90px 0;
+        }
+
+        main {
+            margin: 0 0 50px;
+        }
+
+        .featured-places .featured-item .thumb {
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-places .featured-item .thumb img {
+            width: 100%;
+            overflow: hidden;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .featured-places .featured-item .thumb .overlay-content {
+            position: absolute;
+            z-index: 9;
+            top: 30px;
+            left: 30px;
+            color: #fff;
+        }
+
+        .featured-places .featured-item .thumb .overlay-content li {
+            display: inline;
+            margin-right: 3px;
+        }
+
+        .featured-places .featured-item .thumb .date-content {
+            position: absolute;
+            z-index: 9;
+            top: 30px;
+            right: 30px;
+            color: #fff;
+            text-align: center;
+            width: 90px;
+            height: 90px;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #4883ff;
+            border-radius: 50%;
+        }
+
+        .featured-places .featured-item .thumb .date-content h6 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-places .featured-item .thumb .date-content span {
+            font-size: 12px;
+            font-weight: 300;
+            text-transform: uppercase;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-places .featured-item .down-content {
+            background-color: #fff;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px 20px 0;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .featured-places .featured-item .down-content h4 {
+            margin-top: 0px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #232323;
+            margin-bottom: 5px;
+        }
+
+        .featured-places .featured-item .down-content span {
+            display: block;
+            font-size: 14px;
+            color: #4883ff;
+            margin-bottom: 15px;
+        }
+
+        .featured-places .featured-item .down-content span strong {
+            font-size: 22px;
+        }
+
+        .featured-places .featured-item .down-content p {
+            margin-bottom: 20px;
+        }
+
+        .featured-places .featured-item .down-content .col-md-6 {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .featured-places .featured-item .down-content .text-button {
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            border-top: 1px solid #ddd;
+            margin: 0px -20px;
+        }
+
+        .featured-places .featured-item .down-content .first-button {
+            border-right: 1px solid #ddd;
+        }
+
+        .featured-places .featured-item .down-content .text-button a {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #7a7a7a;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            transition: all 0.5s;
+        }
+
+        .featured-places .featured-item .down-content .text-button a:hover {
+            color: #4883ff;
+        }
+
+        .thumb-img img {
+            width: 100%;
+        }
+
+        #popular {
+            margin: 50px 0;
+        }
+
+        .popular-item {
+            border: 1px solid #2c343b;
+            padding: 10px;
+            margin: 10px auto;
+            border-radius: 5px;
+        }
+
+        .popular-item h4 {
+            font-size: 19px;
+        }
+
+        .popular-item span em {
+            font-size: 13px;
+        }
+
+        .form-control {
+            border-radius: 0px;
+            padding-left: 15px;
+            font-size: 13px;
+            color: #aaa;
+            background-color: #f4f4f4;
+            border: 1px solid #eee;
+            outline: none;
+            box-shadow: none;
+            line-height: 40px;
+            height: 40px;
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        textarea.form-control {
+            border-radius: 0px;
+            padding-left: 15px;
+            padding-top: 10px;
+            font-size: 13px;
+            color: #aaa;
+            background-color: #f4f4f4;
+            border: 1px solid #eee;
+            outline: none;
+            box-shadow: none;
+            min-height: 140px;
+            height: 160px;
+            max-height: 180px;
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 25px;
+        }
+    </style>
+    <div class="jumbotron">
+        <div class="hero-text">
+            <h1>
+                <span style="color: #f2f2f2">Car</span><span style="color: #f2dede">Awesome</span> <br>
+                Car-Store
+            </h1>
+        </div>
+    </div>
+    <main>
+        <section class="popular-places" id="popular">
+            <div class="container">
+                <div class="row">
+                    {% for review in reviews %}
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="item popular-item">
+                                <div class="thumb">
+                                    <div class="thumb-img">
+                                        <img src="{{ review.car_image.url }}" alt="">
+                                    </div>
+                                    <div class="text-content">
+                                        <h4>{{ review.buyer.first_name }} {{ review.buyer.last_name }}</h4>
+                                        <span>
+                                            <em>
+                                                {{ review.review }}
+                                            </em>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="popular-places">
+            <div class="container text-center">
+                <h4>Please write a testimonial</h4>
+                <br>
+                <div class="blue-button">
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                       aria-expanded="false" aria-controls="collapseExample">Click</a>
+                </div>
+            </div>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <form class="form-group" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    {{ form|crispy }}
+                                </fieldset>
+                                <div class="form-group">
+                                    <button class="btn btn-success" type="submit" name="testimonial-submit-btn">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

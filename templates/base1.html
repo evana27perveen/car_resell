@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block meta %}
+    {% endblock %}
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+    <title>Carawesome | The Best Car Dealing Website</title>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif !important;
+        }
+
+        #header {
+            height: 100px !important;
+        }
+
+        .hr-menu-divider {
+            display: none;
+        }
+
+        @media only screen and (max-width: 991px) {
+            #header {
+                height: 60px !important;
+            }
+
+            #header .container {
+                margin: 0;
+            }
+
+            #header .container .navbar {
+                width: 100%;
+            }
+
+            .hr-menu-divider {
+                display: flex;
+                width: 100%;
+            }
+
+            .navbar .container-fluid {
+                padding: 0;
+            }
+        }
+
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+            padding-inline-start: 40px;
+        }
+
+        #menu li {
+            margin-left: 30px;
+        }
+
+        #id-dropdown ul li {
+            margin: 0;
+        }
+
+        #id-dropdown ul li a {
+            font-size: 13px;
+            font-family: 'Raleway', sans-serif !important;
+        }
+
+
+        footer {
+            padding: 80px 0px 70px 0px;
+            border-top: 1px solid #ddd;
+        }
+
+        footer .footer-heading h4 {
+            font-size: 21px;
+            color: #232323;
+            letter-spacing: 0.5px;
+            margin-top: 15px;
+            margin-bottom: 40px;
+        }
+
+
+        footer .about-veno .logo {
+            margin-bottom: 40px;
+        }
+
+        footer .about-veno ul li a {
+            width: 32px;
+            height: 32px;
+            display: inline-block;
+            text-align: center;
+            line-height: 32px;
+            background-color: #cdcdcd;
+            border-radius: 50%;
+            font-size: 15px;
+            color: #fff;
+            margin-right: 3px;
+            transition: all 0.5s;
+        }
+
+        footer .about-veno p {
+            margin-bottom: 25px;
+        }
+
+        footer .about-veno ul li a:hover {
+            background-color: #4883ff;
+        }
+
+        footer .useful-links ul {
+            padding-left: 0;
+        }
+
+        footer .useful-links ul li {
+            margin-bottom: 12px;
+            list-style-type: none;
+        }
+
+        footer .useful-links ul li a {
+            font-size: 15px;
+            color: #7a7a7a;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            transition: all 0.5s;
+        }
+
+        footer .useful-links ul li a:hover {
+            color: #4883ff;
+        }
+
+        footer .useful-links ul li i {
+            color: #4883ff;
+            font-size: 6px;
+            position: relative;
+            top: -3px;
+            margin-right: 8px;
+        }
+
+        footer .contact-info p {
+            margin-bottom: 25px;
+        }
+
+        footer .contact-info ul {
+            padding-left: 0;
+        }
+
+        footer .contact-info ul li {
+            margin: 10px 0;
+            list-style-type: none;
+        }
+
+        footer .contact-info ul li i {
+            color: #4883ff;
+            font-size: 6px;
+            position: relative;
+            top: -3px;
+            margin-right: 8px;
+        }
+
+        footer .contact-info ul li span {
+            font-size: 13px;
+            color: #7a7a7a;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            width: 80px;
+            display: inline-block;
+        }
+
+        footer .contact-info ul li a {
+            font-size: 13px;
+            color: #4883ff;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .sub-footer p {
+            text-align: center;
+            display: inline-block;
+            background-color: #f4f4f4;
+            width: 100%;
+            margin-bottom: 0px;
+            padding: 30px 0px;
+            font-size: 15px;
+            color: #aaaaaa;
+        }
+
+        .sub-footer a {
+            text-decoration: none;
+            color: #4883ff;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <header id="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mx-auto" id="menu">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{% url 'App_cars:home' %}">
+                                    Home
+                                </a>
+                            </li>
+                            <hr class="hr-menu-divider">
+                            <li>
+                                <a href="{% url 'App_cars:service' %}" class="nav-link"
+                                   style="color: black">Services</a>
+                            </li>
+                            <hr class="hr-menu-divider">
+                            <li>
+                                <a href="{% url 'App_cars:car-store' %}" class="nav-link"
+                                   style="color: black">Car-Store</a>
+                            </li>
+                            <hr class="hr-menu-divider">
+                            <li>
+                                <a href="{% url 'App_login:about' %}" class="nav-link" style="color: black">About</a>
+                            </li>
+                            <hr class="hr-menu-divider">
+                            <li>
+                                <a href="{% url 'App_cars:blog' %}" class="nav-link" style="color: black">Blog</a>
+                            </li>
+                            <hr class="hr-menu-divider">
+                            <li class="nav-item dropdown" id="id-dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    Contact
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'App_login:contact' %}">
+                                            Contact Us
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'App_cars:reviews' %}">
+                                            Testimonial
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'App_login:my_chats' %}">
+                                            Chats
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                </ul>
+                            </li>
+                            <hr class="hr-menu-divider">
+                            {% if user.is_authenticated %}
+                                <li class="nav-item dropdown" id="id-dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ user.username }}
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'App_login:my-profile' %}">
+                                                Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'App_login:profile-settings' %}">
+                                                Settings
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'App_login:logout' %}">
+                                                Logout
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li class="nav-item dropdown" id="id-dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                       data-bs-toggle="dropdown" aria-expanded="false">
+                                        Login/Signup
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'App_login:login' %}">
+                                                Login
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'App_login:signup' %}">
+                                                Signup
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            <hr class="hr-menu-divider">
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+</div>
+
+{% block main %}
+{% endblock %}
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="about-veno">
+                    <div class="logo">
+                        <img src="{% static 'img/car-awesome-logo.png' %}" alt="Venue Logo">
+                    </div>
+                    <p></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="useful-links">
+                    <div class="footer-heading">
+                        <h4>Useful Links</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'App_cars:home' %}">
+                                        <i class="fa fa-stop"></i>
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="fa fa-stop"></i>
+                                        About
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="fa fa-stop"></i>
+                                        Team
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="fa fa-stop"></i>
+                                        Contact Us
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        <i class="fa fa-stop"></i>
+                                        Testimonials
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'App_cars:blog' %}">
+                                        <i class="fa fa-stop"></i>
+                                        Blog
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="contact-info">
+                    <div class="footer-heading">
+                        <h4>Contact Information</h4>
+                    </div>
+                    <p><i class="fa fa-map-marker"></i> Dhaka, Bangladesh</p>
+                    <ul>
+                        <li>
+                            <span>
+                                <i class="fa fa-stop"></i>
+                                Phone:
+                            </span>
+                            <a href="#">
+                                +88 018 1643 1640
+                            </a>
+                        </li>
+                        <li>
+                            <span>
+                                <i class="fa fa-stop"></i>
+                                Phone:
+                            </span>
+                            <a href="#">
+                                +88 018 6420 8110
+                            </a>
+                        </li>
+                        <li>
+                            <span>
+                                <i class="fa fa-stop"></i>
+                                Email:
+                            </span>
+                            <a href="#">
+                                contact@company.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!--- Copyright Footer --->
+<div class="sub-footer">
+    <p>Copyright © 2021 Registered: <a href="#">CarAwesome</a></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,575 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block meta %}
+{% endblock %}
+{% block main %}
+    <style>
+        .jumbotron {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static "img/banner-image-2-1920x300.jpg" %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 270px;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+            font-size: 45px;
+            padding: 90px 0;
+        }
+
+        .profile {
+            margin: 50px auto 50px;
+        }
+    </style>
+    <div class="jumbotron">
+        <div class="hero-text">
+            <h1>
+                <span style="color: #f2f2f2">Car</span><span style="color: #f2dede">Awesome</span> <br>
+                Car-Store
+            </h1>
+        </div>
+    </div>
+    <div class="container profile">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="{{ profile.profile_picture.url }}"
+                         alt="Profile Picture"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        {{ profile.full_name }}
+                    </h5>
+                    <h6>
+                        {{ profile.country }}
+                    </h6>
+                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active" id="home-tab" data-toggle="tab" role="tab"
+                                    aria-controls="home" aria-selected="true"
+                                    onclick="showAbout()"
+                            >About
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="profile-tab" data-toggle="tab" onclick="showDropBox()"
+                                    aria-selected="false">Drop Box
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="messages-tab" data-toggle="tab" onclick="showMessages()"
+                                    aria-selected="false">
+                                Messages
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                {% if profile %}
+                    <button type="button" class="btn btn-success profile-edit-btn" name="btnAddMore"
+                            onclick="window.open('{% url "App_login:profile-settings" %}')">
+                        <i class="fa fa-cog"></i>
+                        Edit Profile
+                    </button>
+                {% else %}
+                    <button type="button" class="btn btn-success profile-edit-btn" name="btnAddMore"
+                            onclick="window.open('{% url "App_login:profile-settings" %}')">
+                        Complete Profile
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show" id="AboutUser" style="display: block;" role="tabpanel"
+                         aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Username</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ user.username }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Full Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ profile.full_name }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ user.email }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ profile.mobile_phone }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Address</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ profile.House }}, {{ profile.city }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="id-dropbox" style="display: none" role="tabpanel"
+                         aria-labelledby="home-tab">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Car Title</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input placeholder="Car Model + Car Year" type="text" name="title"
+                                               class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Year</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="year" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Mileage</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="mileage" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Buying Price</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="buying_price" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Asking price</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="selling_price" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Usage Period</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <select type="text" name="usage_period" class="form-control">
+                                            <option value="1 Year">1 year</option>
+                                            <option value="2 Year">2 year</option>
+                                            <option value="3 Year">3 year</option>
+                                            <option value="4 Year">4 year</option>
+                                            <option value="5 Year">5 year</option>
+                                            <option value="More than 5 Year">More than 5 year</option>
+                                        </select>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Exterior Color</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="exterior-color" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Interior Color</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="interior-color" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Kilometer Per Liter</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="kmpl" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Fuel Type</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="fuel-type" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>transmission</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="transmission" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Engine Model</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="engine" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>VIN (Vehicle Identification Number)</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="vin" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Convenience</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="convenience" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Entertainment</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="entertainment" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Safety Solutions</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="safety" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Descriptions</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="text" name="description" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Front Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" accept="*/image/jpeg" name="front-image"
+                                               class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Back Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="back-image" accept="*/image/jpeg" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Left side Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="left-image" accept="*/image/jpeg" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Right side Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="right-side-image" accept="*/image/jpeg"
+                                               class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Engine Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="engine-image" accept="*/image/jpeg"
+                                               class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Interior Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="interior-image1" accept="*/image/jpeg"
+                                               class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Interior Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="interior-image2" accept="*/image/jpeg"
+                                               class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Interior Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="interior-image3" accept="*/image/jpeg"
+                                               class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Interior Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="interior-image4" accept="*/image/jpeg"
+                                               class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Other Image (optional)</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="op-image1" accept="*/image/jpeg" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Other Image (optional)</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" accept="*/image/jpeg" name="op-image2" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Car License Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="car-license-image" accept="*/image/jpeg"
+                                               class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Buying Document Image</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="buying-document-image" accept="*/image/jpeg"
+                                               class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Car Video</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>
+                                        <input type="file" name="car-video" class="form-control">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {% if profile %}
+                                        <button class="btn btn-success w-100" type="submit" name="car-advertisement">
+                                            POST
+                                        </button>
+                                    {% else %}
+                                        <button class="btn btn-danger disabled" type="submit" name="car-advertisement">
+                                            POST
+                                        </button>
+                                        <span>Please complete your profile first</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="id-messages" style="display: none;" role="tabpanel">
+                        {% for message_request in message_requests %}
+                            <form method="GET" class="form-group"
+                                  action="{% url 'chat:home' %}">
+                                {% csrf_token %}
+                                <label for="Room Name">Room Name</label>
+                                <input type="text" name="room_name" class="form-control"
+                                       value="{{ message_request.room_name }}"
+                                       id="seller_name" readonly>
+                                <input type="text" name="username" value="{{ message_request.seller_name }}"
+                                       id="username"
+                                       style="display: none;">
+                                <input type="text" name="seller_name" value="{{ message_request.seller_name }}"
+                                       id="seller"
+                                       style="display: none;">
+                                <button type="submit" name="message_room" class="mt-2 btn btn-primary">
+                                    Enter the room
+                                </button>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let dropbox = document.getElementById("id-dropbox");
+        let about = document.getElementById("AboutUser");
+        let messages = document.getElementById('id-messages');
+
+        function showDropBox() {
+            dropbox.style.display = 'block';
+            dropbox.classList.add('active');
+
+            about.style.display = 'none';
+            about.classList.remove('active');
+
+            messages.style.display = 'none';
+            messages.classList.remove('active');
+        }
+
+        function showAbout() {
+            dropbox.style.display = 'none';
+            about.style.display = 'block';
+
+            about.classList.add('active');
+            dropbox.classList.remove('active');
+
+            messages.style.display = 'none';
+            messages.classList.remove('active');
+        }
+
+        function showMessages() {
+            dropbox.style.display = 'none';
+            dropbox.classList.remove('active');
+
+            about.style.display = 'none';
+            about.classList.remove('active');
+
+            messages.style.display = 'block';
+            messages.classList.add('active');
+        }
+    </script>
+{% endblock %}

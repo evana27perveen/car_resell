@@ -1,0 +1,295 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block meta %}
+{% endblock %}
+{% block main %}
+    <style>
+        .jumbotron {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static "img/banner-image-2-1920x300.jpg" %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 270px;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+            font-size: 45px;
+            padding: 90px 0;
+        }
+
+        main {
+            margin: 0 0 50px;
+        }
+
+        .featured-places .featured-item .thumb {
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-places .featured-item .thumb img {
+            width: 100%;
+            overflow: hidden;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .featured-places .featured-item .thumb .overlay-content {
+            position: absolute;
+            z-index: 9;
+            top: 30px;
+            left: 30px;
+            color: #fff;
+        }
+
+        .featured-places .featured-item .thumb .overlay-content li {
+            display: inline;
+            margin-right: 3px;
+        }
+
+        .featured-places .featured-item .thumb .date-content {
+            position: absolute;
+            z-index: 9;
+            top: 30px;
+            right: 30px;
+            color: #fff;
+            text-align: center;
+            width: 90px;
+            height: 90px;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #4883ff;
+            border-radius: 50%;
+        }
+
+        .featured-places .featured-item .thumb .date-content h6 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-places .featured-item .thumb .date-content span {
+            font-size: 12px;
+            font-weight: 300;
+            text-transform: uppercase;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-places .featured-item .down-content {
+            background-color: #fff;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px 20px 0;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .featured-places .featured-item .down-content h4 {
+            margin-top: 0px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #232323;
+            margin-bottom: 5px;
+        }
+
+        .featured-places .featured-item .down-content span {
+            display: block;
+            font-size: 14px;
+            color: #4883ff;
+            margin-bottom: 15px;
+        }
+
+        .featured-places .featured-item .down-content span strong {
+            font-size: 22px;
+        }
+
+        .featured-places .featured-item .down-content p {
+            margin-bottom: 20px;
+        }
+
+        .featured-places .featured-item .down-content .col-md-6 {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .featured-places .featured-item .down-content .text-button {
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            border-top: 1px solid #ddd;
+            margin: 0px -20px;
+        }
+
+        .featured-places .featured-item .down-content .first-button {
+            border-right: 1px solid #ddd;
+        }
+
+        .featured-places .featured-item .down-content .text-button a {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #7a7a7a;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            transition: all 0.5s;
+        }
+
+        .featured-places .featured-item .down-content .text-button a:hover {
+            color: #4883ff;
+        }
+
+        .featured-item {
+            margin-bottom: 30px;
+        }
+    </style>
+    <div class="jumbotron">
+        <div class="hero-text">
+            <h1>
+                <span style="color: #f2f2f2">Car</span><span style="color: #f2dede">Awesome</span> <br>
+                Car-Store
+            </h1>
+        </div>
+    </div>
+
+    <main>
+        <section class="featured-places" style="margin: 50px 0;">
+            <div class="container">
+                <form method="get" action="{% url 'App_cars:car-search' %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Usages Period:</label>
+                                <select class="form-control" name="usage-period">
+                                    <option value="0">Any</option>
+                                    <option value="1">1 Year</option>
+                                    <option value="2">2 Year</option>
+                                    <option value="3">3 Year</option>
+                                    <option value="4">4 Year</option>
+                                    <option value="5">5 Year</option>
+                                    <option value="more-than-5">More Than 5 Year</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Fuel Type:</label>
+                                <input type="text" class="form-control" name="fuel-type">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Year:</label>
+                                <input type="text" name="year" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Engine Model:</label>
+                                <input type="text" class="form-control" name="engine-model">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Price:</label>
+                                <select class="form-control" name="price-range">
+                                    <option value="9.99">< 10 Lac</option>
+                                    <option value="19.9999">< 20 Lac</option>
+                                    <option value="29.9999">< 30 Lac</option>
+                                    <option value="39.9999">< 40 Lac</option>
+                                    <option value="40.0000">> 40 Lac</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Mileage:</label>
+                                <input type="text" class="form-control" name="mileage">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Doors:</label>
+                                <input type="text" name="doors" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label>Number of seats:</label>
+                                <input type="text" class="form-control" name="number-of-seats">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center blue-button">
+                        <button type="submit" name="search-btn" class="btn btn-outline-primary mt-3">Search</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="featured-places">
+            <div class="container">
+                <div class="row">
+                    {% for car in cars %}
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="featured-item">
+                                <div class="thumb">
+                                    <div class="thumb-img">
+                                        <img src="{{ car.back_image.url }}" alt="Car Image">
+                                    </div>
+                                    <div class="overlay-content">
+                                        <strong><i class="fa fa-dashboard"></i> {{ car.kmpl }} km/l</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <strong><i class="fa fa-cube"></i> {{ car.mileage }} cc</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <strong><i class="fa fa-cog"></i> {{ car.transmission }}</strong>
+                                    </div>
+                                </div>
+                                <div class="down-content">
+                                    <h4>{{ car.title }}</h4>
+
+                                    <br>
+
+                                    <p>{{ car.fuel_type }} / {{ car.year }} / Used vehicle</p>
+
+                                    <p>
+                                        <span>
+                                            <del>
+                                                <sup>৳</sup>
+                                                {{ car.buying_price }}
+                                            </del>
+                                            <strong>
+                                                <sup>৳</sup>
+                                                {{ car.selling_price }}
+                                            </strong>
+                                        </span>
+                                    </p>
+
+                                    <div class="text-button">
+                                        <a href="{% url 'App_cars:car-details' pk=car.id %}">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+

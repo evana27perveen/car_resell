@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load crispy_forms_filters %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Signup Form</title>
+    <style>
+        body {
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background: url("{% static 'img/signup/signup.jpg' %}") no-repeat fixed center;
+            background-size: cover;
+        }
+
+        form {
+            background-color: transparent;
+            border: 1px solid darkgoldenrod;
+            border-radius: 3px;
+            color: #ffffff;
+            margin: 130px 10px 50px;
+            padding: 20px;
+            opacity: .9;
+        }
+
+        @media only screen and (max-width: 320px) {
+            form {
+                margin: 20px 0 0 0;
+                padding: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 560px) {
+            form {
+                margin: 20px 0 0 0;
+                padding: 20px;
+            }
+        }
+
+        .btn-login {
+            color: darkgoldenrod;
+            text-decoration: underline;
+        }
+
+        .btn-letsgo {
+            background-color: transparent;
+            border: 1px solid goldenrod;
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .btn-letsgo:hover {
+            background-color: goldenrod;
+            border: 1px solid goldenrod;
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .btn-login:hover {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form class="form-group" method="post">
+                {% csrf_token %}
+                <legend>Signup Here!</legend>
+                <fieldset class="form-group">
+                    {{ form|crispy }}
+                </fieldset>
+                <input type="checkbox" onclick="showPassword()"> show password
+                <div class="form-group mt-3">
+                    <button class="btn btn-letsgo">Let's start</button>
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-login" href="{% url 'App_login:login' %}">
+                        I already have an account!!!
+                    </a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<!-- Bootstrap JavaScript -->
+<script>
+    let password1 = document.getElementById('id_password1');
+    let password2 = document.getElementById('id_password2');
+    password1.type = "password";
+    password2.type = "password";
+
+    function showPassword() {
+        if (password1.type === 'password') {
+            password1.type = 'text';
+            password2.type = 'text';
+        } else {
+            password1.type = 'password';
+            password2.type = 'password';
+        }
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

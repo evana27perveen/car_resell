@@ -1,0 +1,446 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block meta %}
+{% endblock %}
+{% block main %}
+    <style>
+        .jumbotron {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static "img/banner-image-2-1920x300.jpg" %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 270px;
+            margin: 50px 0 50px;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+            font-size: 45px;
+            padding: 90px 0;
+        }
+
+        main {
+            margin: 0 0 50px;
+        }
+
+        .form-group img, #main-image {
+            width: 100%;
+        }
+
+        .accordion li {
+            position: relative;
+        }
+
+        .accordion li .accordion-trigger {
+            border: 1px solid #ddd;
+        }
+
+        .accordion li:last-child .accordion-trigger {
+
+        }
+
+        .accordion-content {
+            display: none;
+        }
+
+        .accordion .accordion-trigger {
+            width: 100%;
+            display: block;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 17px;
+            letter-spacing: 0.5px;
+            color: #232323;
+            user-select: none;
+            padding: 15px 20px;
+            text-decoration: none;
+        }
+
+        .accordion .accordion-trigger:after {
+            width: 15px;
+            height: 15px;
+            background-color: #ddd;
+            border-radius: 50%;
+            position: absolute;
+            right: 20px;
+            content: " ";
+            top: 22.5px;
+            transform: rotate(-45deg);
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .accordion-content {
+            margin: 0px;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .accordion-trigger.active:after {
+            background-color: #4883ff;
+            -webkit-transition: all 0.2s ease-in-out;
+            -moz-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <div class="jumbotron">
+        <div class="hero-text">
+            <h1>
+                <span style="color: #f2f2f2">Car</span><span style="color: #f2dede">Awesome</span> <br>
+                Car-Store
+            </h1>
+        </div>
+    </div>
+    <main>
+        <section class="featured-places">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-xs-12">
+                        <div>
+                            <img id="main-image" src="{{ car.front_image.url }}" alt="" class="img-responsive wc-image">
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="form-group">
+                                    <img src="{{ car.back_image.url }}" alt="" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="form-group">
+                                    <img src="{{ car.right_side_image.url }}" alt="" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="form-group">
+                                    <img src="{{ car.left_side_image.url }}" alt="" class="img-responsive">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="form-group">
+                                    <img src="{% static 'img/product-4-720x480.jpg' %}" alt="" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="form-group">
+                                    <img src="{% static 'img/product-5-720x480.jpg' %}" alt="" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="form-group">
+                                    <img src="{% static 'img/product-6-720x480.jpg' %}" alt="" class="img-responsive">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="form-group">
+                                    <img src="{% static 'img/product-4-720x480.jpg' %}" alt="" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="form-group">
+                                    <img src="{% static 'img/product-5-720x480.jpg' %}" alt="" class="img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-6">
+                                <div class="form-group">
+                                    <img src="{% static 'img/product-6-720x480.jpg' %}" alt="" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xs-12">
+                        <h2><small>
+                            <del>৳ {{ car.buying_price }} (Buying price)</del>
+                        </small><strong class="text-primary">৳ {{ car.selling_price }}</strong></h2>
+
+                        <br>
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Type</span>
+
+                                    <strong class="pull-right">Used vehicle</strong>
+                                </div>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Make</span>
+                                    <strong class="pull-right">{{ car.title }}</strong>
+                                </div>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Model</span>
+
+                                    <strong class="pull-right">{{ car.year }}</strong>
+                                </div>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Mileage</span>
+
+                                    <strong class="pull-right">{{ car.mileage }}</strong>
+                                </div>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Fuel</span>
+
+                                    <strong class="pull-right">{{ car.fuel_type }}</strong>
+                                </div>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Engine size</span>
+
+                                    <strong class="pull-right">{{ car.engine }}</strong>
+                                </div>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Kilometer Per Liter</span>
+
+                                    <strong class="pull-right">{{ car.kmpl }}</strong>
+                                </div>
+                            </li>
+
+
+                            <li class="list-group-item">
+                                <div class="clearfix">
+                                    <span class="pull-left">Gearbox</span>
+
+                                    <strong class="pull-right">{{ car.transmission }}</strong>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="accordions">
+                            <ul class="accordion">
+                                <li>
+                                    <a class="accordion-trigger" id="id-vehicle-extra-btn"
+                                       onclick="vehicle_extra_open()">
+                                        Vehicle Extras
+                                    </a>
+
+                                    <div class="accordion-content" id="id-vehicle-extra-container">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>Exterior Color</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>{{ car.exterior_colour }}</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>Interior Color</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>{{ car.interior_colour }}</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>Vehicle Identification Number</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>{{ car.VIN }}</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>Entertainment</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>{{ car.entertainment }}</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>Convenience</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>{{ car.convenience }}</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>Safety</p>
+                                            </div>
+
+                                            <div class="col-sm-6 col-xs-12">
+                                                <p>{{ car.safety }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="accordion-trigger" id="id-vehicle-details-btn"
+                                       onclick="vehicle_details_opener()">
+                                        Vehicle Description
+                                    </a>
+
+                                    <div class="accordion-content" id="id-vehicle-details-container">
+                                        <p>
+                                            {{ car.description|safe }}
+                                        </p>
+                                    </div>
+                                </li>
+                                {% if membership.memberShip %}
+                                    <li>
+                                        <a class="accordion-trigger" id="id-vehicle-owner-contact-btn"
+                                           onclick="vehicle_owner_contact_opener()">
+                                            Contact Details
+                                        </a>
+
+                                        <div class="accordion-content" id="id-vehicle-contact-container">
+
+                                            <p>
+                                                <span>Name</span>
+
+                                                <br>
+
+                                                <strong>{{ seller_profile.full_name }}</strong>
+
+                                            </p>
+
+                                            <p>
+                                                <span>Phone</span>
+
+                                                <br>
+
+                                                <strong>
+                                                    <a href="tel:123-456-789">{{ seller_profile.mobile_phone }}</a>
+                                                </strong>
+                                            </p>
+
+                                            <p>
+
+                                                <span>Email</span>
+
+                                                <br>
+
+                                                <strong>
+                                                    <a href="mailto:john@carsales.com">john@carsales.com</a>
+                                                </strong>
+                                            </p>
+
+                                            <p>
+                                            <form method="GET" class="form-group"
+                                                  action="{% url 'chat:home' %}">
+                                                {% csrf_token %}
+                                                <input type="text" name="seller_name"
+                                                       value="{{ car.owner }}"
+                                                       id="seller_name" style="display: none;">
+                                                <input type="text" name="room_name"
+                                                       value="chat between {{ seller_profile.user.first_name }}{{ seller_profile.user.last_name }} and {{ user }} on {{ car.title }}"
+                                                       id="room_name" style="display: none;">
+                                                <input type="text" name="username" value="{{ user }}" id="username"
+                                                       style="display: none;">
+                                                <button type="submit" name="message_room" class="btn btn-primary">
+                                                    Message to the seller
+                                                </button>
+                                            </form>
+                                            </p>
+                                        </div>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a class="accordion-trigger" href="{% url 'App_Subscription:checkout' %}">
+                                            Subscribe and Get the contact
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul> <!-- / accordion -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let vehicle_xtr = document.getElementById('id-vehicle-extra-btn');
+        let vehicle_dtls = document.getElementById('id-vehicle-details-btn');
+        let vehicle_owner_contact = document.getElementById('id-vehicle-owner-contact-btn');
+        let vehicle_xtr_container = document.getElementById('id-vehicle-extra-container');
+        let vehicle_details_container = document.getElementById('id-vehicle-details-container');
+        let vehicle_contact_container = document.getElementById('id-vehicle-contact-container');
+
+        let xtr_count = 0;
+        let details_count = 0;
+        let contact_count = 0;
+
+        console.log(vehicle_contact_container === null);
+
+
+        function vehicle_extra_open() {
+            xtr_count += 1
+            if ((xtr_count % 2) === 0) {
+                vehicle_xtr.classList.remove('active');
+                vehicle_xtr_container.style.display = 'none';
+            } else {
+                vehicle_xtr.classList.add('active');
+                vehicle_dtls.classList.remove('active');
+                if (vehicle_owner_contact !== null) {
+                    vehicle_owner_contact.classList.remove('active');
+                }
+                vehicle_xtr_container.style.display = 'block';
+            }
+        }
+
+        function vehicle_details_opener() {
+            details_count += 1
+            if ((details_count % 2) === 0) {
+                vehicle_dtls.classList.remove('active');
+                vehicle_details_container.style.display = 'none';
+            } else {
+                vehicle_dtls.classList.add('active');
+                vehicle_xtr.classList.remove('active');
+                if (vehicle_owner_contact !== null) {
+                    vehicle_owner_contact.classList.remove('active');
+                }
+                vehicle_details_container.style.display = 'block';
+            }
+        }
+
+        if (vehicle_owner_contact !== null) {
+            vehicle_owner_contact.classList.remove('active');
+
+            function vehicle_owner_contact_opener() {
+                contact_count += 1
+                if ((contact_count % 2) === 0) {
+                    vehicle_owner_contact.classList.remove('active');
+                    vehicle_contact_container.style.display = 'none';
+                } else {
+                    vehicle_owner_contact.classList.add('active');
+                    vehicle_dtls.classList.remove('active');
+                    vehicle_xtr.classList.remove('active');
+                    vehicle_contact_container.style.display = 'block';
+                }
+            }
+        }
+    </script>
+{% endblock %}

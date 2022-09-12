@@ -1,0 +1,518 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block meta %}
+{% endblock %}
+{% block main %}
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .jumbotron {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static "img/homepage-banner-image-1920x700.jpg" %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 590px;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+            font-size: 45px;
+            padding-top: 180px;
+        }
+
+        .hero-text button {
+            background-color: #4883ff;
+            font-family: "Raleway", sans-serif;
+            border: 3px solid #4883ff;
+            color: #ffffff;
+        }
+
+        .hero-text button:hover {
+            background-color: transparent;
+            border: 3px solid #4883ff;
+            color: #ffffff;
+        }
+
+        .featured-places .featured-item .thumb {
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-places .featured-item .thumb img {
+            width: 100%;
+            overflow: hidden;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .featured-places .featured-item .thumb .overlay-content {
+            position: absolute;
+            z-index: 9;
+            top: 30px;
+            left: 30px;
+            color: #fff;
+        }
+
+        .featured-places .featured-item .thumb .overlay-content li {
+            display: inline;
+            margin-right: 3px;
+        }
+
+        .featured-places .featured-item .thumb .date-content {
+            position: absolute;
+            z-index: 9;
+            top: 30px;
+            right: 30px;
+            color: #fff;
+            text-align: center;
+            width: 90px;
+            height: 90px;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #4883ff;
+            border-radius: 50%;
+        }
+
+        .featured-places .featured-item .thumb .date-content h6 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-places .featured-item .thumb .date-content span {
+            font-size: 12px;
+            font-weight: 300;
+            text-transform: uppercase;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-places .featured-item .down-content {
+            background-color: #fff;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px 20px 0;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .featured-places .featured-item .down-content h4 {
+            margin-top: 0px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #232323;
+            margin-bottom: 5px;
+        }
+
+        .featured-places .featured-item .down-content span {
+            display: block;
+            font-size: 14px;
+            color: #4883ff;
+            margin-bottom: 15px;
+        }
+
+        .featured-places .featured-item .down-content span strong {
+            font-size: 22px;
+        }
+
+        .featured-places .featured-item .down-content p {
+            margin-bottom: 20px;
+        }
+
+        .featured-places .featured-item .down-content .col-md-6 {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .featured-places .featured-item .down-content .text-button {
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            border-top: 1px solid #ddd;
+            margin: 0px -20px;
+        }
+
+        .featured-places .featured-item .down-content .first-button {
+            border-right: 1px solid #ddd;
+        }
+
+        .featured-places .featured-item .down-content .text-button a {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #7a7a7a;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            transition: all 0.5s;
+        }
+
+        .featured-places .featured-item .down-content .text-button a:hover {
+            color: #4883ff;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .section-heading span {
+            font-size: 17px;
+            display: block;
+            margin: 0px;
+            color: #4883ff;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 0px;
+            margin-top: 14px;
+            font-size: 23px;
+            font-weight: 600;
+            color: #232323;
+            letter-spacing: 0.5px;
+        }
+
+        #id-product-card .col-md-4 {
+            margin-bottom: 20px;
+        }
+
+        section#video-container {
+            background-image: url('{% static "img/contact-image-1-1920x700.jpg" %}');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+        #video-container {
+            position: relative;
+            width: 100%;
+            height: 560px;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        #video-container video,
+        .video-overlay {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        #video-container .video-overlay {
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+
+        #video-container .video-content {
+            z-index: 99999;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+
+        }
+
+        .video-content p {
+            line-height: 2;
+            color: #fff;
+            text-align: center;
+        }
+
+        #video-container .video-content .inner {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column wrap;
+        }
+
+        #video-container .video-content .inner span {
+            font-size: 17px;
+            display: block;
+            margin: 0px;
+            color: #fff;
+        }
+
+        #video-container .video-content .inner h2 {
+            margin-bottom: 0px;
+            margin-top: 14px;
+            font-size: 23px;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        #video-container .video-content .inner .btn-contact {
+            color: #ffffff;
+            background-color: #218ce3;
+            border: 2px solid #218ce3;
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        #video-container .video-content .inner .btn-contact:hover {
+            color: #ffffff;
+            background-color: transparent;
+            border: 2px solid #218ce3;
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+
+        .popular-places .owl-nav {
+            display: none;
+        }
+
+        .popular-places .owl-dots {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .popular-places .owl-dots .owl-dot span {
+            width: 12px;
+            height: 12px;
+            background-color: #cdcdcd !important;
+            display: inline-block;
+            border-radius: 50%;
+            margin: 0 3px;
+        }
+
+        .popular-places .owl-dots .active span {
+            background-color: #4883ff !important;
+        }
+
+        .popular-places .owl-dots button {
+            outline: none;
+        }
+
+        .popular-item {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .popular-places .popular-item .thumb {
+            position: relative;
+        }
+
+        .popular-places .popular-item .thumb img {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .popular-places .popular-item .thumb .text-content {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 9;
+            color: #fff;
+        }
+
+        .popular-places .popular-item .thumb .text-content h4 {
+            font-size: 19px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-top: 0px;
+            margin-bottom: 5px;
+        }
+
+        .popular-places .popular-item .thumb .text-content span {
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+
+        .popular-places .popular-item .thumb .plus-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 9;
+        }
+
+        .featured-item {
+            margin-bottom: 30px;
+        }
+
+        .popular-places .popular-item .thumb .plus-button i {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            color: #fff;
+            transition: all 0.5s;
+        }
+
+        .popular-places .popular-item .thumb .plus-button i:hover {
+            background-color: rgba(250, 250, 250, 0.3);
+        }
+
+        #see_more_btn {
+            width: 30%;
+            text-align: center;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 18px;
+            background-color: #4883ff;
+            color: white;
+        }
+
+    </style>
+    <div class="jumbotron">
+        <div class="hero-text">
+            <h1>
+                <span style="color: #f2f2f2">Car</span><span style="color: #f2dede">Awesome</span> <br>
+                The best place to buy/sell your car
+            </h1>
+            <button onclick="window.location.href='{% url "App_cars:car-store" %}'" class="btn">Buy and Sell</button>
+        </div>
+    </div>
+    <div class="about">
+
+    </div>
+
+    <section class="featured-places">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <span>Featured Cars</span>
+                        <h2>Lorem ipsum dolor sit amet ctetur.</h2>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" id="id-product-card">
+                {% for car in cars %}
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="featured-item">
+                        <div class="thumb">
+                            <div class="thumb-img">
+                                <img src="{{  car.front_image.url }}" alt="car image">
+                            </div>
+                            <div class="overlay-content">
+                                <strong><i class="fa fa-dashboard"></i>{{ car.mileage }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <strong><i class="fa fa-cube">{{ car.kmpl }}</i></strong>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <strong><i class="fa fa-cog">{{ car.transmission }}</i></strong>
+                            </div>
+                        </div>
+                        <div class="down-content">
+                            <h4>{{ car.title }}</h4>
+
+                            <br>
+
+                            <p>{{ car.kmpl }} / {{ car.fuel_type }} / {{ car.year }} / Used vehicle</p>
+
+                            <p><span><del><sup>৳ </sup>{{ car.buying_price }}</del> <strong><sup>৳ </sup>{{ car.selling_price }}</strong></span></p>
+
+                            <div class="text-button">
+                                <a href="{% url 'App_cars:car-details' pk=car.id %}">Show Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            <div class="text-center">
+                <button id="see_more_btn" onclick="window.location.href='{% url "App_cars:car-store" %}'">See More</button>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!--- Blog Place --->
+    <section class="featured-places">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <span>Latest blog posts</span>
+                        <h2>Read the new car blogs</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for blog in blogs %}
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="featured-item">
+                        <div class="thumb">
+                            <div class="thumb-img">
+                                <img src="{{ blog.image.url }}" alt="">
+                            </div>
+
+                            <div class="overlay-content">
+                                <strong title="Author"><i class="fa fa-user"></i>{{ blog.writer.get_full_name }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <strong title="Posted on"><i class="fa fa-calendar"></i>{{ blog.created_date }}</strong>
+
+                            </div>
+                        </div>
+
+                        <div class="down-content">
+                            <h4>{{ blog.title }}</h4>
+
+                            <p>{{  blog.blog|truncatewords_html:30 }}</p>
+
+                            <div class="text-button">
+                                <a href="{% url 'App_cars:blog-details' pk=blog.id %}">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            <div class="text-center">
+                <button id="see_more_btn" onclick="window.location.href='{% url "App_cars:blog" %}'">See More</button>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!--- Contact Us Promote --->
+    <section id="video-container" style="margin: 50px 0 50px !important;">
+        <div class="video-overlay"></div>
+        <div class="video-content">
+            <div class="inner">
+                <div class="section-heading">
+                    <span>Contact Us</span>
+                    <h2>Vivamus nec vehicula felis</h2>
+                </div>
+                <!-- Modal button -->
+
+                <div class="blue-button">
+                    <a href="{% url 'App_login:contact' %}" class="btn-contact">Talk to us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--- Testimonial --->
+
+{% endblock %}

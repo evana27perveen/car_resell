@@ -1,0 +1,225 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block meta %}
+{% endblock %}
+{% block main %}
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .jumbotron {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static "img/banner-image-2-1920x300.jpg" %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 270px;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+            font-size: 45px;
+            padding: 90px 0;
+        }
+
+        .popular-places {
+            margin: 100px;
+        }
+
+        .popular-places .owl-nav {
+            display: none;
+        }
+
+        .popular-places .owl-dots {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .popular-places .owl-dots .owl-dot span {
+            width: 12px;
+            height: 12px;
+            background-color: #cdcdcd !important;
+            display: inline-block;
+            border-radius: 50%;
+            margin: 0 3px;
+        }
+
+        .popular-places .owl-dots .active span {
+            background-color: #4883ff !important;
+        }
+
+        .popular-places .owl-dots button {
+            outline: none;
+        }
+
+        .popular-item {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .popular-places .popular-item .thumb {
+            position: relative;
+        }
+
+        .popular-places .popular-item .thumb img {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            z-index: 1;
+            border-radius: 5px;
+        }
+
+        .popular-places .popular-item .thumb .text-content {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 9;
+            color: #fff;
+        }
+
+        .popular-places .popular-item .thumb .text-content h4 {
+            font-size: 19px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-top: 0px;
+            margin-bottom: 5px;
+        }
+
+        .popular-places .popular-item .thumb .text-content span {
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+
+        .popular-places .popular-item .thumb .plus-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 9;
+        }
+
+        .featured-item {
+            margin-bottom: 30px;
+        }
+
+        .popular-places .popular-item .thumb .plus-button i {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            color: #fff;
+            transition: all 0.5s;
+        }
+
+        .popular-places .popular-item .thumb .plus-button i:hover {
+            background-color: rgba(250, 250, 250, 0.3);
+        }
+
+        .form-control {
+            border-radius: 0px;
+            padding-left: 15px;
+            font-size: 13px;
+            color: #aaa;
+            background-color: #f4f4f4;
+            border: 1px solid #eee;
+            outline: none;
+            box-shadow: none;
+            line-height: 40px;
+            height: 40px;
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        textarea.form-control {
+            border-radius: 0px;
+            padding-left: 15px;
+            padding-top: 10px;
+            font-size: 13px;
+            color: #aaa;
+            background-color: #f4f4f4;
+            border: 1px solid #eee;
+            outline: none;
+            box-shadow: none;
+            min-height: 140px;
+            height: 160px;
+            max-height: 180px;
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 25px;
+        }
+
+        #form-submit {
+            background-color: #4883ff;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 10px 16px;
+        }
+    </style>
+    <div class="jumbotron">
+        <div class="hero-text">
+            <h1>
+                <span style="color: #f2f2f2">Car</span><span style="color: #f2dede">Awesome</span> <br>
+                The best place to buy/sell your car
+            </h1>
+        </div>
+    </div>
+    <main>
+        <section class="popular-places">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="left-content">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <input name="full_name" type="text" class="form-control" id="name"
+                                                   placeholder="Your Full name...">
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <input name="email" type="text" class="form-control" id="subject"
+                                                   placeholder="Email..." required>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <fieldset>
+                                            <input name="phone_number" type="text" class="form-control"
+                                                   id="id-phone-number"
+                                                   placeholder="Phone Number/ Mobile Number...">
+                                            <textarea name="message" rows="6" class="form-control" id="id-message"
+                                                      placeholder="Your message..." required></textarea>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <fieldset>
+                                            <div class="blue-button">
+                                                <button type="submit" id="form-submit" class="btn btn-primary">Send Message</button>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block meta %}
+{% endblock %}
+{% block main %}
+    <style>
+        .jumbotron {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static "img/banner-image-2-1920x300.jpg" %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 270px;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+            font-size: 45px;
+            padding: 90px 0;
+        }
+
+        .header h4, h2, p {
+            text-align: center;
+        }
+
+        .header h4 {
+            color: #ffc61a;
+        }
+
+        .header p {
+            width: 60%;
+        }
+
+        .header-text {
+            margin: -5px auto 80px;
+        }
+
+        .border-right-style {
+            border-right: 2px dotted #9d9d9d;
+        }
+    </style>
+
+    <div class="jumbotron">
+        <div class="hero-text">
+            <h1>
+                <span style="color: #f2f2f2">Car</span><span style="color: #f2dede">Awesome</span> <br>
+                Car-Store
+            </h1>
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <div class="header">
+            <h4>Welcome</h4>
+            <h2>Our Services</h2>
+            <p class="header-text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, assumenda consectetur corporis
+                doloremque eius error fugit incidunt labore nisi nostrum odit optio perspiciatis quae quia recusandae,
+                repudiandae, ullam voluptas voluptates?
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-3 border-right-style p-2">
+                <div class="subscribe-image-div text-center">
+                    <figure>
+                        <img src="{% static 'img/subscribe.png' %}" alt="Car Image" style="width: 70px; height: 70px;">
+                    </figure>
+                </div>
+                <div class="subscribe-text-div text-center">
+                    <h5>Subscribe</h5>
+                    Pay the Subscription fee and get the premium feel of our website
+                </div>
+            </div>
+            <div class="col-md-3 border-right-style p-2">
+                <div class="subscribe-image-div text-center">
+                    <figure>
+                        <img src="{% static 'img/sell car.png' %}" alt="Car Image" style="width: 70px; height: 70px;">
+                    </figure>
+                </div>
+                <div class="subscribe-text-div text-center">
+                    <h5>Sell Car</h5>
+                    Pay the Subscription fee and get the premium feel of our website
+                </div>
+            </div>
+            <div class="col-md-3 border-right-style p-2">
+                <div class="subscribe-image-div text-center">
+                    <figure>
+                        <img src="{% static 'img/buy car.png' %}" alt="Car Image" style="width: 70px; height: 70px;">
+                    </figure>
+                </div>
+                <div class="subscribe-text-div text-center">
+                    <h5>Buy Car</h5>
+                    Pay the Subscription fee and get the premium feel of our website
+                </div>
+            </div>
+            <div class="col-md-3 p-2">
+                <div class="subscribe-image-div text-center">
+                    <figure>
+                        <img src="{% static 'img/car-repair.png' %}" alt="Car Image" style="width: 70px; height: 70px;">
+                    </figure>
+                </div>
+                <div class="subscribe-text-div text-center">
+                    <h5>Car Servicing</h5>
+                    You can customize your car with the help of CARAWESOME
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

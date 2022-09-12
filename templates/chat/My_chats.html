@@ -1,0 +1,45 @@
+{% extends 'base1.html' %}
+{% block meta %}
+
+{% endblock %}
+{% block main %}
+    <style>
+        .alert {
+            padding: 20px;
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .closebtn:hover {
+            color: black;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                {% for chat in chats %}
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>
+                            <i class="fa fa-envelope"></i>
+                        </strong>
+                        {{ chat }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block meta %}
+{% endblock %}
+{% block main %}
+    <style>
+        .jumbotron {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static "img/banner-image-2-1920x300.jpg" %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 270px;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            color: #ffffff;
+            font-family: "Raleway", sans-serif;
+            font-size: 45px;
+            padding: 90px 0;
+        }
+
+        main {
+            margin: 0 0 50px;
+        }
+
+        .settings-form {
+            margin: 50px 0;
+            padding: 20px;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+    </style>
+    <div class="jumbotron">
+        <div class="hero-text">
+            <h1>
+                <span style="color: #f2f2f2">Car</span><span style="color: #f2dede">Awesome</span> <br>
+                Car-Store
+            </h1>
+        </div>
+    </div>
+    <div class="row mt-5 settings-form">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <legend>Profile Settings</legend>
+                <fieldset class="form-group">
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group mt-3">
+                    <button class="btn btn-success" type="submit">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+{% endblock %}

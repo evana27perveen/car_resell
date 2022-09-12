@@ -1,0 +1,73 @@
+{% extends 'base1.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block meta %}
+
+{% endblock %}
+{% block title %}
+    Checkout
+{% endblock %}
+{% block main %}
+    <div class="ftco-blocks-cover-1">
+        <div class="ftco-cover-1 overlay" style="background-image: url('{% static "images/hero_1.jpg" %}')">
+            <div class="container">
+                <div class="row align-items-center">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="mb-3 mt-5">
+            Select Time Period > <span class="text-muted">Checkout</span>
+        </h2>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-5" style="height: auto;">
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                <legend>Information</legend>
+                                {{ form|crispy }}
+                            </fieldset>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary float-right">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-mb-4 mb-5">
+                <div class="card" style="height: auto;">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {{ membership.membership_period }} months Membership will
+                            expire {{ membership.end_membership }}
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <span class="float-left"><b>Order Total</b>&nbsp;</span>
+                        <span class="float-right"><b>{{ membership.membership_cost }} &#2547;</b></span>
+                    </div>
+                </div>
+                <hr>
+                {% if profileFullFilled and not Ismember %}
+                    <a href="{% url 'App_Subscription:payment' %}" class="btn btn-warning btn-lg">Make Payment</a>
+                {% elif Ismember %}
+                    <div class="alert alert-info">
+                        You have already subscribed to a package. Your membership will expire
+                        on {{ membership.end_membership }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">Ensure that all fields of profile are filled up.
+                        <button class="btn btn-info"
+                                onclick="window.location.href='{% url "App_login:profile-settings" %}'">
+                            Profile
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
